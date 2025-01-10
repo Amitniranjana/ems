@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState , useContext ,useEffect } from 'react';
 import Login from './component/Login.jsx';
 import './styles/Login.css';
-// import { setLocalStorage, getLocalStorage } from './utlis/LocalStorage.jsx';
+import {getLocalStorage } from './utlis/LocalStorage.jsx';
 import AdminDashboard from './component/DashBoard/AdminDashboard.jsx';
 import EmployeeDashboard from './component/DashBoard/EmployeeDashboard.jsx';
+import { AuthContext } from './context/AuthProvider.jsx';
 
 const App = () => {
   const [user, setUser] = useState(null);
-
   const handleLogin = (email, password) => {
     if (email === 'admin@gmail.com' && password === '123') {
       setUser('admin');
@@ -19,7 +19,7 @@ const App = () => {
       alert('Invalid credentials');
     }
   };
-
+const data = useContext(AuthContext);
   return (
     <>
       {!user && <Login handleLogin={handleLogin} />}
