@@ -8,23 +8,24 @@ import { AuthContext } from './context/AuthProvider.jsx';
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const authData = useContext(AuthContext);
   const handleLogin = (email, password) => {
-    if (email === 'admin@gmail.com' && password === '123') {
+    if (authData.admin.find((event)=>email===event.email && password===event.password)) {
       setUser('admin');
-      console.log('admin');
-    } else if (email === 'user@gmail.com' && password === '123') {
-      setUser('user');
-      console.log('user');
+
+    } else if (authData.employees.find((event)=>email===event.email && password===event.password)) {
+      setUser('employee');
+
     } else {
       alert('Invalid credentials');
     }
   };
-const data = useContext(AuthContext);
+
   return (
     <>
       {!user && <Login handleLogin={handleLogin} />}
       {user === 'admin' && <AdminDashboard />}
-      {user === 'user' && <EmployeeDashboard />}
+      {user === 'employee' && <EmployeeDashboard />}
     </>
   );
 };
