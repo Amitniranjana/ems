@@ -1,4 +1,10 @@
+
 export default function EmployeeDashboard() {
+    const handleLogout = () => {
+        localStorage.removeItem('loggedInUser'); // Clear the logged-in user's data
+        
+        window.location.reload(); // Automatically reload the page
+      };
     return (
         <div
             style={{
@@ -55,7 +61,7 @@ export default function EmployeeDashboard() {
                             border: "none",
                             cursor: "pointer",
                             fontSize: "0.9rem",
-                        }}
+                        }} onClick={handleLogout}
                     >
                         Log Out
                     </button>

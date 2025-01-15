@@ -210,7 +210,7 @@ const admin = [{
     "password": "123"
 }];
 
-export const setLocalStorage = ()=>{
+export const setLocalStorage = ()=>{a
     localStorage.setItem('employees',JSON.stringify(employees))
     localStorage.setItem('admin',JSON.stringify(admin))
 }
