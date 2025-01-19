@@ -1,10 +1,11 @@
 
-export default function EmployeeDashboard() {
+export default function EmployeeDashboard({ data }) {
     const handleLogout = () => {
         localStorage.removeItem('loggedInUser'); // Clear the logged-in user's data
-        
+
         window.location.reload(); // Automatically reload the page
-      };
+    };
+
     return (
         <div
             style={{
@@ -50,7 +51,7 @@ export default function EmployeeDashboard() {
                     }}
                 >
                     <h2 style={{ margin: 0, fontSize: "1.2rem", color: "#333" }}>
-                        Hello, Amit
+                        Hello, {data?.firstName || "user"}
                     </h2>
                     <button
                         style={{
@@ -84,8 +85,9 @@ export default function EmployeeDashboard() {
                             textAlign: "center",
                         }}
                     >
-                        <h1 style={{ fontSize: "2rem", margin: 0, color: "#333" }}>0</h1>
-                        <p style={{ fontWeight: "bold", margin: 0 }}>New Tasks</p>
+                        <h1 style={{ fontSize: "2rem", margin: 0, color: "#333" }}>{data.taskCounts.newTask}</h1>
+                        <p style={{ fontWeight: "bold", margin: 0 }}>
+                            <b>New Task</b>  </p>
                     </div>
                     <div
                         style={{
@@ -95,9 +97,9 @@ export default function EmployeeDashboard() {
                             textAlign: "center",
                         }}
                     >
-                        <h1 style={{ fontSize: "2rem", margin: 0, color: "#fff" }}>3</h1>
+                        <h1 style={{ fontSize: "2rem", margin: 0, color: "#fff" }}>{data.taskCounts.completed}</h1>
                         <p style={{ fontWeight: "bold", margin: 0, color: "#fff" }}>
-                            Completed
+                            <b>completed</b>
                         </p>
                     </div>
                     <div
@@ -108,9 +110,9 @@ export default function EmployeeDashboard() {
                             textAlign: "center",
                         }}
                     >
-                        <h1 style={{ fontSize: "2rem", margin: 0, color: "#fff" }}>4</h1>
+                        <h1 style={{ fontSize: "2rem", margin: 0, color: "#fff" }}>{data.taskCounts.active}</h1>
                         <p style={{ fontWeight: "bold", margin: 0, color: "#fff" }}>
-                            Accepted
+                            <b>Active</b>
                         </p>
                     </div>
                     <div
@@ -121,31 +123,12 @@ export default function EmployeeDashboard() {
                             textAlign: "center",
                         }}
                     >
-                        <h1 style={{ fontSize: "2rem", margin: 0, color: "#fff" }}>1</h1>
+                        <h1 style={{ fontSize: "2rem", margin: 0, color: "#fff" }}>{data.taskCounts.failed}</h1>
                         <p style={{ fontWeight: "bold", margin: 0, color: "#fff" }}>
                             Failed
                         </p>
                     </div>
                 </div>
-
-                {/* Notes Section */}
-                <div
-                    style={{
-                        backgroundColor: "#f8d7da", // Light red for attention
-                        borderRadius: "8px",
-                        padding: "1rem",
-                        border: "1px solid #f5c2c7", // Slightly darker border
-                        color: "#842029", // Dark red text
-                        textAlign: "left",
-                        marginBottom: "1rem",
-                    }}
-                >
-                    <p style={{ margin: 0, fontSize: "0.9rem" }}>
-                        Please ensure to complete all pending tasks within the deadline to maintain productivity. If you face any challenges, feel free to reach out to your manager.
-                    </p>
-                </div>
-
-                {/* Additional Notes Section 1 */}
                 <div
                     style={{
                         backgroundColor: "#cce5ff", // Light blue for info
@@ -157,26 +140,38 @@ export default function EmployeeDashboard() {
                         marginBottom: "1rem",
                     }}
                 >
-                    <p style={{ margin: 0, fontSize: "0.9rem" }}>
-                        New company-wide update is scheduled for next week. Ensure all systems are up to date before the deployment.
-                    </p>
+                    <b style={{ color: "red" }}>Task-1</b>
+                    <div style={{ display: "flex", gap: "4rem" }}>
+                        <p>
+                            <b>TaskTitle</b> {data.tasks[0].taskTitle}</p>
+                        <p> <b>TaskDate</b> {data.tasks[0].taskDate}</p>
+                    </div>
+                    <b>TaskDescription</b>  {data.tasks[0].taskDescription}
+                    <br />
+
                 </div>
 
-                {/* Additional Notes Section 2 */}
                 <div
                     style={{
-                        backgroundColor: "#fff3cd", // Light yellow for caution
+                        backgroundColor: "#f8d7da", // Light red for attention
                         borderRadius: "8px",
                         padding: "1rem",
-                        border: "1px solid #ffeeba", // Slightly darker yellow border
-                        color: "#856404", // Dark yellow text
+                        border: "1px solid #f5c2c7", // Slightly darker border
+                        color: "#842029", // Dark red text
                         textAlign: "left",
+                        marginBottom: "1rem",
                     }}
                 >
-                    <p style={{ margin: 0, fontSize: "0.9rem" }}>
-                        Remember to submit your weekly report by Friday. Late submissions may affect performance reviews.
-                    </p>
+                    <b style={{ color: "red" }}>Task-2</b>
+                    <div style={{ display: "flex", gap: "4rem" }}>
+                        <p>
+                            <b>TaskTitle</b> {data.tasks[1].taskTitle}</p>
+                        <p> <b>TaskDate</b> {data.tasks[1].taskDate}</p>
+                    </div>
+                    <b>TaskDescription</b>  {data.tasks[1].taskDescription}
+
                 </div>
+                {/* Additional Notes Section 2 */}
             </div>
         </div>
     );

@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const data = getLocalStorage();
-    
+
     return (
         <AuthContext.Provider value={data}>
             {children}
